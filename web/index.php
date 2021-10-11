@@ -1,11 +1,11 @@
 <?php
 
-require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__.'/../vendor/autoload.php';
 
 use model\Customer;
 
 ?>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
 
@@ -15,7 +15,7 @@ use model\Customer;
 
 <body>
     <div id="pageload">
-        <?= 'Page loaded at ' . date('Y-m-d H:i:s') . substr((string)microtime(), 1, 8) ?>
+        <?= 'Page loaded at '.date('Y-m-d H:i:s').substr((string) microtime(), 1, 8) ?>
     </div>
 
     <h2>Add Customer</h2>
@@ -45,7 +45,6 @@ use model\Customer;
 
         <input type="submit" value="Add"/>
     </form>
-
     <hr/>
     <h2>Show Customers</h2>
 
@@ -61,8 +60,9 @@ use model\Customer;
                 <tr>
             </thead>
             <tbody>
-                <?php foreach (Customer::findAll() as $customer ) { ?>
-                    <?php if (count($customer->addresses()) === 0): ?>
+                <?php foreach (Customer::findAll() as $customer) { ?>
+                    <?php if (count($customer->addresses()) === 0) { ?>
+                        <?php echo "\n" ?>
                         <tr> 
                             <td><?= $customer->firstName ?></td>
                             <td><?= $customer->lastName ?></td>
@@ -72,8 +72,9 @@ use model\Customer;
                                 <button>Delete User</button>
                             </td>
                         </tr>
-                    <?php else: ?>
+                    <?php } else { ?>
                         <?php foreach ($customer->addresses() as $address) { ?>
+                            <?php echo "\n" ?>
                             <tr>
                                 <td><?= $customer->firstName ?></td>
                                 <td><?= $customer->lastName ?></td>
@@ -84,7 +85,7 @@ use model\Customer;
                                 </td>
                             </tr>
                         <?php } ?>
-                    <?php endif ?>
+                    <?php } ?>
                 <?php } ?>
             </tbody>
         </table>
